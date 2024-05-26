@@ -22,5 +22,6 @@ class Prospect(Base):
     last_name = Column(String, index=True)
     email = Column(String, index=True)
     resume_url = Column(String)
+    lead_id = Column(Integer, ForeignKey("leads.id"), unique=True)
 
     lead = relationship("Lead", back_populates="prospect")
