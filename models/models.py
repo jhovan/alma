@@ -1,8 +1,6 @@
-from sqlalchemy import Boolean, Column, Enum, ForeignKey, Integer, String
+from sqlalchemy import Column, Enum, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
-
 from common.constants import LeadStatus
-
 from .database import Base
 
 class Lead(Base):
