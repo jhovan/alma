@@ -20,6 +20,9 @@ def get_db():
     finally:
         db.close()
 
+@app.post("/create-lead/", response_model=schemas.Lead)
+def create_lead(db: Session = Depends(get_db)):
+    return crud.create_lead(db=db)
 
 @app.post("/leads/create", response_model=schemas.Lead)
 def create_lead(db: Session = Depends(get_db)):
