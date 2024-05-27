@@ -1,6 +1,6 @@
 from pydantic import BaseModel
-from fastapi import File
-from common.constants import LeadStatus
+from fastapi import UploadFile
+from ..common.constants import LeadStatus
 
 
 class Lead(BaseModel):
@@ -8,7 +8,7 @@ class Lead(BaseModel):
     state: LeadStatus
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class ProspectBase(BaseModel):
@@ -19,7 +19,7 @@ class ProspectBase(BaseModel):
 
 
 class ProspectCreate(ProspectBase):
-    resume_file: File
+    resume_file: UploadFile
 
 
 class Prospect(ProspectBase):
@@ -27,4 +27,4 @@ class Prospect(ProspectBase):
     resume_url: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
