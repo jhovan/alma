@@ -20,6 +20,7 @@ def get_db():
     finally:
         db.close()
 
+
 @app.post("/leads/create", response_model=schemas.Lead)
 def create_lead(db: Session = Depends(get_db)):
     return crud.create_lead(db=db)
@@ -30,6 +31,11 @@ def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     leads = crud.get_leads(db=db, skip=skip, limit=limit)
     return leads
 
+
 @app.put("/leads/{lead_id}/update", response_model=schemas.Lead)
-def update_lead(lead_id: int, state: LeadStatus = LeadStatus.REACHED_OUT, db: Session = Depends(get_db)):
+def update_lead(
+    lead_id: int,
+    state: LeadStatus = LeadStatus.REACHED_OUT,
+    db: Session = Depends(get_db),
+):
     return crud.update_lead(db=db, lead_id=lead_id, lead_state=state)
