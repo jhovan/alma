@@ -15,3 +15,11 @@ def create_lead(db: Session):
     db.commit()
     db.refresh(db_lead)
     return db_lead
+
+def update_lead(db: Session, lead_id: int, lead_state: LeadStatus):
+    query = db.query(models.Lead).filter(models.Lead.id == lead_id)
+    db_lead = query.one()
+    query.update({models.Lead.state: lead_state})
+    db.commit()
+    db.refresh(db_lead)
+    return db_lead
