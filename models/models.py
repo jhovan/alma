@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from common.constants import LeadStatus
 from .database import Base
 
+
 class Lead(Base):
     __tablename__ = "leads"
 

@@ -10,14 +10,17 @@ class Lead(BaseModel):
     class Config:
         orm_mode = True
 
+
 class ProspectBase(BaseModel):
     first_name: str
     last_name: str
     email: str
     lead_id: int
 
+
 class ProspectCreate(ProspectBase):
     resume_file: File
+
 
 class Prospect(ProspectBase):
     id: int
