@@ -19,6 +19,9 @@ def get_db():
     finally:
         db.close()
 
+@app.post("/create-lead/", response_model=schemas.Lead)
+def create_lead(db: Session = Depends(get_db)):
+    return crud.create_lead(db=db)
 
 @app.get("/leads/", response_model=list[schemas.Lead])
 def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
